@@ -30,6 +30,7 @@
             };
 
             var result = await this.userManager.CreateAsync(user, password);
+            //userManager.AddToRoleAsync(user, "User").GetAwaiter().GetResult();
 
             return result;
         }

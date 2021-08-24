@@ -1,5 +1,6 @@
 ﻿namespace DocInfo.App.Infrastructure
 {
+    using DocInfo.Common;
     using DocInfo.Data;
     using DocInfo.Data.Models;
     using Microsoft.AspNetCore.Builder;
@@ -23,9 +24,21 @@
 
                     if (!roleManager.Roles.AnyAsync().GetAwaiter().GetResult())
                     {
-                        dbContext.Add(new IdentityRole() { Name = "Admin", NormalizedName = "ADMIN" });
-                        dbContext.Add(new IdentityRole() { Name = "Employee", NormalizedName = "EMPLOYEE" });
-                        dbContext.Add(new IdentityRole() { Name = "User", NormalizedName = "USER" });
+                        dbContext.Add(new IdentityRole 
+                        { 
+                            Name = GlobalConstants.AdministratorRoleName, 
+                            NormalizedName = GlobalConstants.AdministratorRoleName.ToUpper() 
+                        });
+                        dbContext.Add(new IdentityRole 
+                        { 
+                            Name = GlobalConstants.EmployeeRoleName, 
+                            NormalizedName = GlobalConstants.EmployeeRoleName.ToUpper() 
+                        });
+                        dbContext.Add(new IdentityRole
+                        { 
+                            Name = GlobalConstants.UserRoleName,
+                            NormalizedName = GlobalConstants.UserRoleName.ToUpper() 
+                        });
                     }
 
                     if (!userManager.Users.AnyAsync().GetAwaiter().GetResult())
@@ -34,8 +47,23 @@
                         user.UserName = "Pesho";
                         //user.NormalizedUserName = "PESHO";
                         //user.Email = "pesho@pesho.bg";
-                        var result = userManager.CreateAsync(user, "123456").GetAwaiter().GetResult();
-                        userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
+                        var result = userManager.CreateAsync(user, GlobalConstants.Password).GetAwaiter().GetResult();
+                        userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName).GetAwaiter().GetResult();
+
+                        //var userOne = new ApplicationUser();
+                        //userOne.UserName = "Gosho";
+                        //var result1 = userManager.CreateAsync(userOne, GlobalConstants.Password).GetAwaiter().GetResult();
+                        //userManager.AddToRoleAsync(userOne, GlobalConstants.UserRoleName).GetAwaiter().GetResult();
+
+                        //var userTwo = new ApplicationUser();
+                        //userTwo.UserName = "Kiro";
+                        //var result2 = userManager.CreateAsync(userTwo, GlobalConstants.Password).GetAwaiter().GetResult();
+                        //userManager.AddToRoleAsync(userTwo, GlobalConstants.UserRoleName).GetAwaiter().GetResult();
+
+                        //var userThree = new ApplicationUser();
+                        //userThree.UserName = "Mima";
+                        //var result3 = userManager.CreateAsync(userThree, GlobalConstants.Password).GetAwaiter().GetResult();
+                        //userManager.AddToRoleAsync(userThree, GlobalConstants.UserRoleName).GetAwaiter().GetResult();
                     }
 
                     dbContext.SaveChanges();

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DocInfo.Common\DocInfo.Common.csproj" />
     <ProjectReference Include="..\DocInfo.Data\DocInfo.Data.csproj" />
   </ItemGroup>
 

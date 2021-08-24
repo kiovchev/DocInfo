@@ -1,5 +1,6 @@
 ﻿namespace DocInfo.Data.Models
 {
+    using DocInfo.Common;
     using System.ComponentModel.DataAnnotations;
 
     public class Document
@@ -8,11 +9,11 @@
         public int DocumentId { get; set; }
 
         [Required]
-        [StringLength(maximumLength:50)]
+        [StringLength(maximumLength:GlobalConstants.DocTitleMaxLength)]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 1000)]
+        [StringLength(maximumLength: GlobalConstants.DocDescriptionMaxLength)]
         public string Description { get; set; }
 
         [Required]

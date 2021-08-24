@@ -26,6 +26,11 @@
         [Route("register")]
         public async Task<ActionResult> Regiser(RegisterRequestModel model)
         {
+            if (!this.ModelState.IsValid) // is it good ??? or is better to use something as a fluent validation 
+            {
+                return BadRequest();
+            }
+
             var result = await this.userService.CreateUserAsync(model.UserName, model.Password, model.Email);
 
             if (result.Succeeded)

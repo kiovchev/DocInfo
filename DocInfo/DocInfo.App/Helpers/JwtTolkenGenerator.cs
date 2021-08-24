@@ -1,6 +1,5 @@
 ﻿namespace DocInfo.App.Helpers
 {
-    using DocInfo.Data.Models;
     using Microsoft.IdentityModel.Tokens;
     using System;
     using System.IdentityModel.Tokens.Jwt;

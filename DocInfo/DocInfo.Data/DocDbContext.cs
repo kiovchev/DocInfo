@@ -8,9 +8,11 @@
     {
         public DocDbContext(DbContextOptions<DocDbContext> options) : base(options){}
 
-       // public DbSet<Profile> Profiles { get; set; }
+        //public DbSet<Profile> Profiles { get; set; }
 
-       // public DbSet<Document> Documents { get; set; }
+        //public DbSet<Document> Documents { get; set; }
+
+        //public DbSet<Publication> Publications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
